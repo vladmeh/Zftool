@@ -46,7 +46,7 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 	    
 Вносим изменения в созданный файл конфигурации `.zf.ini`
 
-	php.include_path = "...;<project name>/library"
+	php.include_path = "...;<the path to your project>/library"
     autoloadernamespaces.0 = "Zftool_"
     basicloader.classes.0 = "Zftool_Tool_Project_Provider_ModelMapperProvider"
     basicloader.classes.1 = "Zftool_Tool_Project_Provider_Manifest"
