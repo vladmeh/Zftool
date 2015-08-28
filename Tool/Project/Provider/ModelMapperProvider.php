@@ -417,6 +417,8 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
 
     public function create($tableName, $module = null)
     {
+        $this->_loadProfile(self::NO_PROFILE_THROW_EXCEPTION);
+
         $name = ucwords($tableName);
 
         $this->createTableModel($tableName, $module);
