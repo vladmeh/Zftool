@@ -53,12 +53,6 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
     
 Узнать где находиться файл `.zf.ini` и его текущие настроки можно командой `zf show config`
 
-**Конфигурация Вашего приложения**
-
-В конфигурационный файл приложения `<project name>/application/configs/application.ini` добавьте следующие пространствва имен:
-
-	autoloaderNamespaces[] = "Zftool"
-	
 Проверяем установку
 
 	zf ? modelmapper
