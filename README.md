@@ -154,3 +154,6 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 Copyright (c) 2013 [VladMeh](https://github.com/vladmeh)
 
 Distributed under the [MIT License](http://www.opensource.org/licenses/MIT) (MIT-LICENSE.txt)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vladmeh/zftool/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
