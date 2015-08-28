@@ -10,6 +10,7 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
 {
 
     protected $_specialties = array(
+        'TableModel',
         'MapperModel',
         'DbTable',
         'TableList',
@@ -179,16 +180,13 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
      * @throws Zend_Tool_Project_Provider_Exception
      * @internal param string $name
      */
-    public function create($tableName, $module = null)
+    public function createTableModel($tableName, $module = null)
     {
         $this->_loadProfile(self::NO_PROFILE_THROW_EXCEPTION);
 
         $originalName = $tableName;
 
         $name = ucwords($tableName);
-
-        $this->createDbTable($name, strtolower($name), $module);
-        $this->createMapperModel($name, $module);
 
         // get request/response object
         $request = $this->_registry->getRequest();
@@ -229,8 +227,22 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
         // do the creation
         if ($request->isPretend()) {
 
-            $response->appendContent('Updated a model at ' . $modelResource->getContext()->getPath());
-            $modelResource->create();
+            $response->appendContent('This project already has a Mapper model: '  . $modelResource->getContext()->getPath());
+            $nameResponse = $this->_registry
+                ->getClient()
+                ->promptInteractiveInput("Overwrite?(y) Backup old file?(b) Cancel.(q)");
+            $name = $nameResponse->getContent();
+            if($name == 'y' || $name == 'b')
+            {
+                if($name == 'b' && file_exists($modelResource->getContext()->getPath()))
+                {
+                    $response->appendContent('Backup a Mapper model file at ' . $modelResource->getContext()->getPath() . '.bak');
+                    rename($modelResource->getContext()->getPath(),$modelResource->getContext()->getPath().'.bak');
+                }
+
+                $response->appendContent('Updated a model at ' . $modelResource->getContext()->getPath());
+                $modelResource->create();
+            }
 
         } else {
 
@@ -326,10 +338,11 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
      * @param $name
      * @param $actualTableName
      * @param null $module
-     * @param bool|false $forceOverwrite
+     * @throws Zend_Tool_Framework_Client_Exception
      * @throws Zend_Tool_Project_Provider_Exception
+     * @internal param bool|false $forceOverwrite
      */
-    public function createDbTable($name, $actualTableName, $module = null, $forceOverwrite = false)
+    public function createDbTable($name, $actualTableName, $module = null)
     {
         $this->_loadProfile(self::NO_PROFILE_THROW_EXCEPTION);
 
@@ -380,11 +393,11 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
             $response->appendContent('This project already has a Mapper model: '  . $tableResource->getContext()->getPath());
             $nameResponse = $this->_registry
                 ->getClient()
-                ->promptInteractiveInput("Overwrite?(y) Backup old file?(a) Cancel.(n)");
+                ->promptInteractiveInput("Overwrite?(y) Backup old file?(b) Cancel.(n)");
             $name = $nameResponse->getContent();
-            if($name == 'y' || 'a')
+            if($name == 'y' || $name == 'b')
             {
-                if($name == 'a' && file_exists($tableResource->getContext()->getPath()))
+                if($name == 'b' && file_exists($tableResource->getContext()->getPath()))
                 {
                     $response->appendContent('Backup a model at ' . $tableResource->getContext()->getPath() . '.bak');
                     rename($tableResource->getContext()->getPath(),$tableResource->getContext()->getPath().'.bak');
@@ -399,6 +412,17 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
             $tableResource->create();
             $this->_storeProfile();
         }
+    }
+
+
+    public function create($tableName, $module = null)
+    {
+        $name = ucwords($tableName);
+
+        $this->createTableModel($tableName, $module);
+        $this->createDbTable($name, strtolower($name), $module);
+        $this->createMapperModel($name, $module);
+
     }
 
     /**
