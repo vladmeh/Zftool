@@ -75,7 +75,7 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 	
 ## Применение
 
-** Основные команды **
+**Основные команды**
 
 	zf create modelmapper Tablename
 	
@@ -112,7 +112,7 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 	This project already has a Mapper model: ...
     Overwrite?(y) Backup old file?(a) Cancel.(n)
 
-** Вспомогательные команды **
+**Вспомогательные команды**
 
 	zf create modelmapper.?
 	Zend Framework Command Line Console Tool v1.12.13
