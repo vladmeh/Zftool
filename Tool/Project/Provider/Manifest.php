@@ -33,7 +33,7 @@ require_once 'Zftool/Tool/Project/Provider/ModelMapperProvider.php';
 /**
  * @see Vlmeh_Tool_Project_Provider_BaseModelProvider
  */
-require_once 'Zftool/Tool/Project/Provider/BaseModelProvider.php';
+//require_once 'Zftool/Tool/Project/Provider/BaseModelProvider.php';
 
 /**
  * @see Zend_Tool_Framework_Manifest_ProviderManifestable
