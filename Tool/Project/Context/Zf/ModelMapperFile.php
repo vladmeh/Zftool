@@ -219,7 +219,13 @@ class Zftool_Tool_Project_Context_Zf_ModelMapperFile extends Zend_Tool_Project_C
                         )),
                         new Zend_CodeGenerator_Php_Method(array(
                             'name' => 'fetchAll',
-                            'body' => '$resultSet = $this->getDbTable()->fetchAll();'."\n\n".
+                            'parameters' => array(
+                                array(
+                                    'name' => 'select',
+                                    'defaultValue' => null,
+                                ),
+                            ),
+                            'body' => '$resultSet = $this->getDbTable()->fetchAll($select);'."\n\n".
                                 '$entries   = array();'."\n".
                                 'foreach ($resultSet as $row) {'."\n\t".
                                 '$entry = new '.$className.'();'."\n\t".
@@ -229,6 +235,10 @@ class Zftool_Tool_Project_Context_Zf_ModelMapperFile extends Zend_Tool_Project_C
                                 'return $entries;',
                             'docblock'   => new Zend_CodeGenerator_Php_Docblock(array(
                                 'tags'             => array(
+                                    array(
+                                        'name'        => 'param',
+                                        'description' => 'null $select',
+                                    ),
                                     array(
                                         'name'        => 'return',
                                         'description' => 'array',
