@@ -194,7 +194,8 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
 
         // Check that there is not a dash or underscore, return if doesnt match regex
         if (preg_match('#[_-]#', $name)) {
-            throw new Zend_Tool_Project_Provider_Exception('Model names should be camel cased.');
+            //throw new Zend_Tool_Project_Provider_Exception('Model names should be camel cased.');
+            $name = $this->_normaliseName($name);
         }
 
         if (self::hasResource($this->_loadedProfile, $name, $module, 'modelColFile')) {
@@ -275,7 +276,8 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
 
         // Check that there is not a dash or underscore, return if doesnt match regex
         if (preg_match('#[_-]#', $name)) {
-            throw new Zend_Tool_Project_Provider_Exception('Model names should be camel cased.');
+            //throw new Zend_Tool_Project_Provider_Exception('Model names should be camel cased.');
+            $name = $this->_normaliseName($name);
         }
 
 
@@ -348,7 +350,8 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
 
         // Check that there is not a dash or underscore, return if doesnt match regex
         if (preg_match('#[_-]#', $name)) {
-            throw new Zend_Tool_Project_Provider_Exception('DbTable names should be camel cased.');
+            //throw new Zend_Tool_Project_Provider_Exception('DbTable names should be camel cased.');
+            $name = $this->_normaliseName($name);
         }
 
         $originalName = $name;
@@ -504,6 +507,20 @@ class Zftool_Tool_Project_Provider_ModelMapperProvider
         $db = $zendApp->getBootstrap()->getResource('db');
 
         return $db;
+
+    }
+
+    protected function _normaliseName($name)
+    {
+        $name = preg_split('#[_-]#', $name);
+        $result = array();
+        foreach ($name as $value) {
+            $result[] = ucwords($value);
+        }
+
+        $name = implode($result);
+
+        return $name;
 
     }
 }
