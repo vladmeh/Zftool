@@ -261,6 +261,32 @@ class Zftool_Tool_Project_Context_Zf_ModelColFile extends Zend_Tool_Project_Cont
                 ),
             )),
         ));
+        $methodsClass[] = new Zend_CodeGenerator_Php_Method(array(
+            'name' => 'getOptions',
+            'body' => '$class = new ReflectionClass($this);'."\n".
+                '$properties = $class->getProperties(ReflectionProperty::IS_PROTECTED);'."\n\n".
+                'if(0 === count($properties))'."\n\t".
+                'return null;'."\n\n".
+                '$data = array();'."\n".
+                'foreach ($properties as $property) {'."\n\t".
+                '$name = preg_split("~_~", $property->getName());'."\n\t".
+                '$normaliseName = implode(array_map("ucwords", $name));'."\n\t".
+                '$option = lcfirst($normaliseName);'."\n\n\t".
+                'if ($property->isProtected()) {'."\n\t\t".
+                '$property->setAccessible(TRUE);'."\n\t\t".
+                '$data[$option] = $property->getValue($this);'."\n\t".
+                '}'."\n".
+                '}'."\n\n".
+                'return $data;',
+            'docblock'   => new Zend_CodeGenerator_Php_Docblock(array(
+                'tags'             => array(
+                    array(
+                        'name'        => 'return',
+                        'description' => 'array|null',
+                    ),
+                ),
+            )),
+        ));
         if(!empty($colList)){
             foreach ($colList as $colTable) {
                 $originName = $colTable['COLUMN_NAME'];
