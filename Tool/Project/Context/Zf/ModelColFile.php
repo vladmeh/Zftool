@@ -274,7 +274,9 @@ class Zftool_Tool_Project_Context_Zf_ModelColFile extends Zend_Tool_Project_Cont
                 '$option = lcfirst($normaliseName);'."\n\n\t".
                 'if ($property->isProtected()) {'."\n\t\t".
                 '$property->setAccessible(TRUE);'."\n\t\t".
-                '$data[$option] = $property->getValue($this);'."\n\t".
+                '$data[$option] = (!is_null($property->getValue($this)))'."\n\t\t".
+                '?$property->getValue($this)'."\n\t\t".
+                ':"";'."\n\t".
                 '}'."\n".
                 '}'."\n\n".
                 'return $data;',
