@@ -1,5 +1,5 @@
 {
-  "name": "vladmeh/Zftool",
+  "name": "vladmeh/zftool",
   "description": "Zend Tool CLI Provider for Zend Framework 1 Mapper Models Generator",
   "type": "library",
   "keywords": ["tooling", "models generator", "zf1"],
