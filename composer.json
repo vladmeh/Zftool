@@ -1,0 +1,33 @@
+{
+  "name": "vladmeh/zf1-mapper-models-generator-cli",
+  "description": "Zend Tool CLI Provider for Zend Framework 1 Mapper Models Generator",
+  "type": "library",
+  "keywords": ["tooling", "models generator", "zf1"],
+  "homepage": "https://github.com/vladmeh/Zftool",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vlad Meh",
+      "homepage": "http://vladmeh.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/vladmeh/Zftool/issues"
+  },
+  "autoload": {
+    "psr-0": {
+      "Zftool_": "library/"
+    }
+  },
+  "include-path": [
+    "library/"
+  ],
+  "require": {
+    "php": ">=5.2.11"
+  },
+  "require-dev": {
+    "zendframework/zendframework1": "1.12.*",
+    "phpunit/phpunit": "3.7.*",
+    "phpunit/dbunit": "1.3.*"
+  }
+}
