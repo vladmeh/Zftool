@@ -1,5 +1,5 @@
 {
-  "name": "vladmeh/zf1-mapper-models-generator-cli",
+  "name": "vladmeh/Zftool",
   "description": "Zend Tool CLI Provider for Zend Framework 1 Mapper Models Generator",
   "type": "library",
   "keywords": ["tooling", "models generator", "zf1"],
