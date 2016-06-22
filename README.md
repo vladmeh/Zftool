@@ -15,7 +15,7 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 Установка ZF1 Tool Mapper models generator:
 
 	cd <project name>/library
-	git clone git@github.com:vladmeh/Zftool.git
+	git clone https://github.com/vladmeh/Zftool.git
 
 У вас должна получиться следующая структура проекта
 
@@ -148,10 +148,3 @@ ZF1 Tool Mapper model generator - это утилита для быстрого 
 Copyright (c) 2013 [VladMeh](https://github.com/vladmeh)
 
 Distributed under the [MIT License](http://www.opensource.org/licenses/MIT) (MIT-LICENSE.txt)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vladmeh/zftool/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vladmeh/zftool/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
